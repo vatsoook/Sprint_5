@@ -1,9 +1,10 @@
 from locators import Locators
-from url import SIGN_UP_PAGE_URL
+from url import REGISTER_PAGE_URL
+from constants import EMAIL, PASSWORD
 
 # Тест проверки успешной регистрации
 def test_registration_success_with_valid_data(driver):
-    driver.get(SIGN_UP_PAGE_URL)
+    driver.get(REGISTER_PAGE_URL)
     driver.find_element(*Locators.NAME_INPUT).send_keys("Ринат")
     driver.find_element(*Locators.EMAIL_INPUT).send_keys("ahmetdianovvvv@mail.ru")
     driver.find_element(*Locators.PASSWORD_INPUT).send_keys("Rodos3")
@@ -14,7 +15,7 @@ def test_registration_success_with_valid_data(driver):
 
 # Тест для проверки ошибки для некорректного пароля
 def test_registration_fails_with_invalid_password(driver):
-    driver.get(SIGN_UP_PAGE_URL)
+    driver.get(REGISTER_PAGE_URL)
     driver.find_element(*Locators.NAME_INPUT).send_keys("Ринат")
     driver.find_element(*Locators.EMAIL_INPUT).send_keys("ahmetdianovvvv@mail.ru")
     driver.find_element(*Locators.PASSWORD_INPUT).send_keys("561")
@@ -22,3 +23,4 @@ def test_registration_fails_with_invalid_password(driver):
     error_message = driver.find_element(*Locators.PASSWORD_ERROR).text
 
     assert "Некорректный пароль" in error_message
+
